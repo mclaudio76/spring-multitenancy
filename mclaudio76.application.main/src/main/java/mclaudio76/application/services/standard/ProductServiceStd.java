@@ -15,24 +15,29 @@ import mclaudio76.application.core.services.IStorageService;
 @AppService
 public class ProductServiceStd extends BaseService implements IProductService {
 
+	private IStorageService storageService = null;
+	
 	@Autowired
 	public ProductServiceStd(IStorageService storage) {
 		logInfo("Created instance : "+this);
 		logInfo(" Using storage "+storage);
+		this.storageService = storage;
 	}
 
 	@Override
 	@Transactional
 	public ArrayList<Product> findByFilter(Product filter) {
-		Product p1 = new Product();
-		p1.productID = "00001";
-		p1.description = "Description 0001";
-		Product p2 = new Product();
-		p2.productID = "00001";
-		p2.description = "Description 0001";
 		ArrayList<Product> pList = new ArrayList<>();
-		pList.add(p1);
-		pList.add(p2);
+		if(storageService.isAvailable(filter)) {
+			Product p1 = new Product();
+			p1.productID = "00001";
+			p1.description = "Description 0001";
+			Product p2 = new Product();
+			p2.productID = "00001";
+			p2.description = "Description 0001";
+			pList.add(p1);
+			pList.add(p2);
+		}
 		return pList;
 	}
 

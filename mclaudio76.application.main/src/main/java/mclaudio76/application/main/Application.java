@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,XADataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class},scanBasePackages= {"it.liminf.core"})
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,XADataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class},scanBasePackages= {"mclaudio76.application"})
 @EnableTransactionManagement
 public class Application  {
  
