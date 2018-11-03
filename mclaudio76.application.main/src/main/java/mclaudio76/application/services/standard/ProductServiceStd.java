@@ -1,18 +1,45 @@
 package mclaudio76.application.services.standard;
 
+import java.util.ArrayList;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import mclaudio76.application.core.annotations.AppService;
+import mclaudio76.application.core.entities.Product;
 import mclaudio76.application.core.services.BaseService;
+import mclaudio76.application.core.services.IProductService;
 import mclaudio76.application.core.services.IStorageService;
 
 @AppService
-public class ProductServiceStd extends BaseService {
+public class ProductServiceStd extends BaseService implements IProductService {
 
 	@Autowired
 	public ProductServiceStd(IStorageService storage) {
 		logInfo("Created instance : "+this);
 		logInfo(" Using storage "+storage);
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<Product> findByFilter(Product filter) {
+		Product p1 = new Product();
+		p1.productID = "00001";
+		p1.description = "Description 0001";
+		Product p2 = new Product();
+		p2.productID = "00001";
+		p2.description = "Description 0001";
+		ArrayList<Product> pList = new ArrayList<>();
+		pList.add(p1);
+		pList.add(p2);
+		return pList;
+	}
+
+	@Transactional
+	public void saveProduct(Product item) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
