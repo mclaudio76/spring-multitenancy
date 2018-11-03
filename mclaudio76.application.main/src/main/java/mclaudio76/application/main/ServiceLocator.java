@@ -51,6 +51,7 @@ public class ServiceLocator {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	private Class getActualUnderlyingServiceImplClass(Object cls) {
 		if(AopUtils.isJdkDynamicProxy(cls)) {
 			return AopUtils.getTargetClass(cls);

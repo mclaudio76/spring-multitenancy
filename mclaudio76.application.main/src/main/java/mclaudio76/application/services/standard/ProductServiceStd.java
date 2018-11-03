@@ -22,12 +22,13 @@ public class ProductServiceStd extends BaseService implements IProductService {
 		this.storageService = storage;
 	}
 	
-	
-
 	@Override
 	@Transactional
 	public ArrayList<Product> findByFilter(Product filter) {
 		ArrayList<Product> pList = new ArrayList<>();
+		for(int x = 0;  x < 5; x++) {
+			storageService.isAvailable(filter);
+		}
 		if(storageService.isAvailable(filter)) {
 			Product p1 = new Product();
 			p1.productID = "00001";
