@@ -1,4 +1,4 @@
-package mclaudio76.application.services.standard;
+package mclaudio76.application.customization.acme;
 
 import mclaudio76.application.core.annotations.AppService;
 import mclaudio76.application.core.entities.Product;
