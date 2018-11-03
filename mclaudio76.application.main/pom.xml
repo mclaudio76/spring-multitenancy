@@ -77,7 +77,12 @@
 		</dependency>
 
 
-		
+
+		<dependency>
+			<groupId>mclaudio76.application</groupId>
+			<artifactId>core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
