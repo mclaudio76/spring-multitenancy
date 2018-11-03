@@ -1,5 +1,6 @@
 package mclaudio76.application.apis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,9 @@ public class ProductRESTApi {
 
 	@RequestMapping(path="/list", method= {RequestMethod.GET})
     public List<Product> listProduct() {
-        return prodService.findByFilter(new Product());
+		prodService.dumpInfo();
+		ArrayList<Product> result = prodService.findByFilter(new Product());
+	   return result;
     }
 	
 }

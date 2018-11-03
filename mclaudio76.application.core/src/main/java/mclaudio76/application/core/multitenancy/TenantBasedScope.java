@@ -22,6 +22,7 @@ public class TenantBasedScope implements Scope {
             object = objectFactory.getObject();
             scope.put(impl, object);
         }
+        System.err.println(">>> "+object);
         return object;
 	}
 

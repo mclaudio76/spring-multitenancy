@@ -44,7 +44,7 @@ public class ServiceLocator {
 				}
 			}
 			catch(Exception e) {
-				
+				System.err.println("Errore --> "+e.getMessage());
 			}
 		}
 		return standardImpl;

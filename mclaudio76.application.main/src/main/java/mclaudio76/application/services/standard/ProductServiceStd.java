@@ -19,10 +19,10 @@ public class ProductServiceStd extends BaseService implements IProductService {
 	
 	@Autowired
 	public ProductServiceStd(IStorageService storage) {
-		logInfo("Created instance : "+this);
-		logInfo(" Using storage "+storage);
 		this.storageService = storage;
 	}
+	
+	
 
 	@Override
 	@Transactional
@@ -45,6 +45,14 @@ public class ProductServiceStd extends BaseService implements IProductService {
 	public void saveProduct(Product item) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public void dumpInfo() {
+		logInfo("Created instance : "+this);
+		logInfo(" Using storage "+this.storageService);
 	}
 	
 }
