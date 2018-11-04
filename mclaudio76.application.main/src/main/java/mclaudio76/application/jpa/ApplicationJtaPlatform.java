@@ -7,6 +7,7 @@ import javax.transaction.UserTransaction;
 
 import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jta.atomikos.AtomikosXADataSourceWrapper;
 
 public class ApplicationJtaPlatform extends AbstractJtaPlatform {
 

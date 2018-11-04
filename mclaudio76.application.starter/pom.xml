@@ -41,18 +41,13 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>mclaudio76.application</groupId>
-			<artifactId>main</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jta-atomikos</artifactId>
 		</dependency>
 
 		<dependency>
 			<groupId>mclaudio76.application</groupId>
-			<artifactId>customization-acme</artifactId>
+			<artifactId>main</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
