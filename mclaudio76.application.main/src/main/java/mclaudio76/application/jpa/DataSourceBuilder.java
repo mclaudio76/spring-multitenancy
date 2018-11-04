@@ -43,8 +43,9 @@ public class DataSourceBuilder {
 	
 	public DataSource wrapXADataSource(XADataSource ds, String uniqueXAName) {
 		AtomikosDataSourceBean wrapper = new AtomikosDataSourceBean();
+		wrapper.setUniqueResourceName(uniqueXAName);
 		wrapper.setMaxPoolSize(100);
-		wrapper.setMinPoolSize(200);
+		wrapper.setMinPoolSize(1);
 		wrapper.setXaDataSource(ds); 
 		return wrapper; 
 	}  

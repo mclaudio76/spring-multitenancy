@@ -15,6 +15,10 @@ public class ApplicationJtaPlatform extends AbstractJtaPlatform {
 	private static TransactionManager txManager;
 	private static UserTransaction    userTx;
 	
+	public ApplicationJtaPlatform() {
+	
+	}
+	
 	@Autowired
 	public ApplicationJtaPlatform(TransactionManager txManager, UserTransaction userTx) {
 		ApplicationJtaPlatform.txManager = txManager;
