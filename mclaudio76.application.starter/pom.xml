@@ -45,6 +45,11 @@
 			<artifactId>main</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+			<dependency>
+				<groupId>mclaudio76.application</groupId>
+				<artifactId>customization-acme</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
 	</dependencies>
 
 	<build>

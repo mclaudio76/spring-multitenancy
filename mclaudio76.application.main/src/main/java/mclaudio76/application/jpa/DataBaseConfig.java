@@ -1,5 +1,7 @@
 package mclaudio76.application.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
@@ -8,9 +10,13 @@ import javax.transaction.UserTransaction;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
+import mclaudio76.application.core.annotations.EntityManagerFactoryProvider;
+import mclaudio76.application.core.multitenancy.TenantContext;
 
 @Configuration
 public class DataBaseConfig {
@@ -26,6 +32,7 @@ public class DataBaseConfig {
 	}
 	
 	
+	
 	@Bean(name="TENANT1")
     public EntityManagerFactory tenant1DataSource(DataSourceBuilder dsBuilder, ApplicationJtaPlatform platform) {
         return createEntityManagerFactory(dsBuilder, platform, "TENANT1", "jdbc:mysql://localhost:3306/persistencejpa", "spring", "spring");
@@ -35,6 +42,19 @@ public class DataBaseConfig {
     public EntityManagerFactory tenant2DataSource(DataSourceBuilder dsBuilder, ApplicationJtaPlatform platform) {
         return createEntityManagerFactory(dsBuilder, platform, "TENANT2", "jdbc:mysql://localhost:3306/secondpersistence", "spring", "spring");
     }
+	
+	/*@Bean
+	@Primary
+	public EntityManagerFactory selectEntityManagerFactory(List<EntityManagerFactory> factories) {
+		System.out.println(" TenantContext tx "+TenantContext.getTenantID());
+		for(EntityManagerFactory item : factories) {
+			String tenant = (String) item.getProperties().getOrDefault("x-tenant-id", "");
+			if(tenant.trim().equals(TenantContext.getTenantID())) {
+				return item;
+			}
+		}
+		return factories.get(0);
+	}*/
 	
 	
 	
@@ -48,7 +68,9 @@ public class DataBaseConfig {
         em.setPersistenceUnitName(tenantID);
         em.setJpaProperties(dsBuilder.getHibernateProperties("org.hibernate.dialect.MySQL5Dialect"));
         em.afterPropertiesSet();
-        return em.getNativeEntityManagerFactory();
+        EntityManagerFactory emf = em.getNativeEntityManagerFactory();
+        emf.getProperties().putIfAbsent("x-tenant-id", tenantID);
+        return emf;
     }
 	
 	

@@ -56,6 +56,9 @@ public class ServiceLocator {
 		if(AopUtils.isJdkDynamicProxy(cls)) {
 			return AopUtils.getTargetClass(cls);
 		}
+		if(AopUtils.isCglibProxy(cls)) {
+			return AopUtils.getTargetClass(cls);
+		}
 		return cls.getClass();
 	}
 	

@@ -2,6 +2,9 @@ package mclaudio76.application.services.standard;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ public class ProductServiceStd extends BaseService implements IProductService {
 
 	private IStorageService storageService = null;
 	
+	@PersistenceContext(unitName="TENANT1")
+	EntityManager em;
+	
 	@Autowired
 	public ProductServiceStd(IStorageService storage) {
 		this.storageService = storage;
@@ -25,6 +31,7 @@ public class ProductServiceStd extends BaseService implements IProductService {
 	@Override
 	@Transactional
 	public ArrayList<Product> findByFilter(Product filter) {
+		System.out.println(em);
 		ArrayList<Product> pList = new ArrayList<>();
 		for(int x = 0;  x < 5; x++) {
 			storageService.isAvailable(filter);
