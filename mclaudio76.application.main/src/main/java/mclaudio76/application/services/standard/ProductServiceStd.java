@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class ProductServiceStd extends BaseService implements IProductService {
 
 	private IStorageService storageService = null;
 	
-	@PersistenceContext(unitName="TENANT1")
+	@PersistenceContext
 	EntityManager em;
 	
 	@Autowired
