@@ -20,7 +20,7 @@ public class StorageServiceCustom extends BaseService implements IStorageService
 	
 	@Override
 	public boolean isAvailable(Product p) {
-		logInfo("No product is available in profile ACME ");
+		logInfo("No product is available in profile ACME, Storage sevice STD  =  "+std);
 		return false;
 	}
 

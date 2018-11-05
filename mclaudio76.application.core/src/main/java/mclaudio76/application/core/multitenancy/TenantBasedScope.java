@@ -15,14 +15,12 @@ public class TenantBasedScope implements Scope {
 	@Override
 	public Object get(String name, ObjectFactory<?> objectFactory) {
 		TenantSpecificServiceImplementationKey impl = new TenantSpecificServiceImplementationKey(name, TenantContext.getTenantID());
-		System.err.println("Entering TenantScope::get object for Implementation "+impl);
 		Map<TenantSpecificServiceImplementationKey, Object> scope = tenantScope;
         Object object = scope.get(impl);
         if (object == null) {
             object = objectFactory.getObject();
             scope.put(impl, object);
         }
-        System.err.println(">>> "+object);
         return object;
 	}
 
