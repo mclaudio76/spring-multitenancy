@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,4 +26,10 @@ public class ProductRESTApi {
 	   return result;
     }
 	
+	
+	@RequestMapping(path="/save", method= {RequestMethod.POST})
+    public Product save(@RequestBody Product o) {
+		prodService.saveProduct(o);
+		return o;
+    }
 }

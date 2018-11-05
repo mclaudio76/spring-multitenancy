@@ -1,5 +1,7 @@
 package mclaudio76.application.jpa;
 
+import java.util.List;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
@@ -8,6 +10,7 @@ import javax.transaction.UserTransaction;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -27,15 +30,23 @@ public class DataBaseConfig {
 	
 	
 	
-	@Bean(name="TENANT1")
+	@Bean(name="STD")
     public EntityManagerFactory tenant1DataSource(DataSourceBuilder dsBuilder, ApplicationJtaPlatform platform) {
-        return createEntityManagerFactory(dsBuilder, platform, "TENANT1", "jdbc:mysql://localhost:3306/persistencejpa", "spring", "spring");
+        return createEntityManagerFactory(dsBuilder, platform, "STD", "jdbc:mysql://localhost:3306/persistencejpa", "spring", "spring");
     }
 	
-	@Bean(name="TENANT2")
+	@Bean(name="ACME")
     public EntityManagerFactory tenant2DataSource(DataSourceBuilder dsBuilder, ApplicationJtaPlatform platform) {
-        return createEntityManagerFactory(dsBuilder, platform, "TENANT2", "jdbc:mysql://localhost:3306/secondpersistence", "spring", "spring");
+        return createEntityManagerFactory(dsBuilder, platform, "ACME", "jdbc:mysql://localhost:3306/secondpersistence", "spring", "spring");
     }
+	
+	
+	@Bean
+	@Primary
+    public EntityManagerFactory selectCurrentTenantEntityManager(List<EntityManagerFactory> lst) {
+		return new ProxyEntityManagerFactory(lst);
+    }
+	
 	
 	/*@Bean
 	@Primary

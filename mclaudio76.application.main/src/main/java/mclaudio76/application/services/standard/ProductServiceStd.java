@@ -27,11 +27,10 @@ public class ProductServiceStd extends BaseService implements IProductService {
 		this.storageService = storage;
 	}
 	
-	
 	@Override
 	@Transactional
 	public ArrayList<Product> findByFilter(Product filter) {
-		System.out.println(em);
+		
 		ArrayList<Product> pList = new ArrayList<>();
 		for(int x = 0;  x < 5; x++) {
 			storageService.isAvailable(filter);
@@ -51,8 +50,7 @@ public class ProductServiceStd extends BaseService implements IProductService {
 
 	@Transactional
 	public void saveProduct(Product item) {
-		// TODO Auto-generated method stub
-		
+		em.persist(em.contains(item) ? item : em.merge(item));
 	}
 
 
