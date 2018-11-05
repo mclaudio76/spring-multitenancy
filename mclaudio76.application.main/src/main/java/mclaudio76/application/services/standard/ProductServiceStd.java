@@ -28,6 +28,7 @@ public class ProductServiceStd extends BaseService implements IProductService {
 		this.storageService = storage;
 	}
 	
+	
 	@Override
 	@Transactional
 	public ArrayList<Product> findByFilter(Product filter) {
