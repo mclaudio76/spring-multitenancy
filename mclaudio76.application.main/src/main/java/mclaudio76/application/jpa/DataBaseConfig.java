@@ -1,7 +1,5 @@
 package mclaudio76.application.jpa;
 
-import java.util.List;
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import javax.sql.XADataSource;
@@ -10,13 +8,9 @@ import javax.transaction.UserTransaction;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-
-import mclaudio76.application.core.annotations.EntityManagerFactoryProvider;
-import mclaudio76.application.core.multitenancy.TenantContext;
 
 @Configuration
 public class DataBaseConfig {
